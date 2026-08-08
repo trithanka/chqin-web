@@ -1,11 +1,7 @@
 import { useEffect } from "react";
 import "@/App.css";
-import { MotionConfig } from "framer-motion";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "@/pages/Home";
-import NotFound from "@/pages/NotFound";
-import ErrorBoundary from "@/components/ErrorBoundary";
-import { setLenis } from "@/lib/scroll";
 
 function useLenis() {
   useEffect(() => {
@@ -23,7 +19,6 @@ function useLenis() {
         smoothWheel: true,
         touchMultiplier: 1.4,
       });
-      setLenis(lenis);
       const raf = (time) => {
         lenis.raf(time);
         rafId = requestAnimationFrame(raf);
@@ -34,7 +29,6 @@ function useLenis() {
       mounted = false;
       if (rafId) cancelAnimationFrame(rafId);
       if (lenis) lenis.destroy();
-      setLenis(null);
     };
   }, []);
 }
@@ -42,22 +36,14 @@ function useLenis() {
 function App() {
   useLenis();
   return (
-    // reducedMotion="user" makes every motion component drop transform and
-    // layout animations when the OS asks for reduced motion, while leaving
-    // opacity fades intact.
-    <MotionConfig reducedMotion="user">
-      <div className="App">
-        <div className="grain-overlay" aria-hidden="true" />
-        <ErrorBoundary>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </ErrorBoundary>
-      </div>
-    </MotionConfig>
+    <div className="App">
+      <div className="grain-overlay" aria-hidden="true" />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

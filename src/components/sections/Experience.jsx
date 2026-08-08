@@ -1,142 +1,90 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useInView,
-  useReducedMotion,
-} from "framer-motion";
-import { Check, ShieldCheck, UserCheck } from "lucide-react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { ArrowRight, Check } from "lucide-react";
 
-const ALIVE_STEPS = [
-  {
-    tag: "Face Scan",
-    headline: "Looking for face...",
-    sub: "Aligning camera & reticle",
-  },
-  {
-    tag: "Biometrics",
-    headline: "✓ Face Verified",
-    sub: "Liveness anti-spoof confirmed",
-  },
-  {
-    tag: "Identity",
-    headline: "Matching identity...",
-    sub: "Checking guest record",
-  },
-  {
-    tag: "Check-In Verified",
-    headline: "✓ Check-In Complete",
-    sub: "Welcome back. Enjoy your stay.",
-  },
-];
+// Phases: 0 mobile, 1 otp, 2 smile, 3 in
+const PHASE_DURATIONS = [2000, 2000, 2000, 2400];
 
-function PhoneScreen({ step, reduce }) {
+function PhoneScreen({ phase }) {
   return (
     <AnimatePresence mode="wait">
       <motion.div
-        key={step}
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 1.05 }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute inset-0 flex flex-col items-center justify-between p-6 pt-10 text-black text-center"
+        key={phase}
+        initial={{ opacity: 0, y: 12, filter: "blur(8px)" }}
+        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        exit={{ opacity: 0, y: -12, filter: "blur(8px)" }}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute inset-0 flex flex-col items-center justify-center px-10 text-black"
       >
-        {/* Step 0: Looking for face... */}
-        {step === 0 && (
-          <div className="flex-1 flex flex-col items-center justify-center">
-            <div className="relative w-40 h-40 rounded-full border-2 border-dashed border-green p-1 flex items-center justify-center mb-6 overflow-hidden bg-black">
-              <img
-                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80"
-                alt="Guest identity verification scan preview"
-                className="w-full h-full object-cover rounded-full opacity-80"
-              />
-              <motion.div
-                animate={{ y: ["-100%", "100%", "-100%"] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="absolute inset-x-0 h-1 bg-green shadow-[0_0_12px_#00ff66]"
+        {phase === 0 && (
+          <>
+            <p className="font-mono-chq text-[10px] tracking-[0.28em] uppercase text-black/40 mb-10">
+              Mobile
+            </p>
+            <div className="w-full border-b border-black/80 pb-3 font-display text-2xl tracking-tight text-center">
+              +91 98107 •••••
+            </div>
+            <div className="mt-12 w-12 h-12 rounded-full bg-green flex items-center justify-center">
+              <ArrowRight size={18} className="text-black" strokeWidth={2.5} />
+            </div>
+          </>
+        )}
+        {phase === 1 && (
+          <>
+            <p className="font-mono-chq text-[10px] tracking-[0.28em] uppercase text-black/40 mb-10">
+              OTP
+            </p>
+            <div className="flex gap-2">
+              {[6, 1, 4, 2, 8, 0].map((n, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.14, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="w-9 h-12 rounded-md border border-black/70 flex items-center justify-center font-display text-xl"
+                >
+                  {n}
+                </motion.div>
+              ))}
+            </div>
+          </>
+        )}
+        {phase === 2 && (
+          <>
+            <p className="font-mono-chq text-[10px] tracking-[0.28em] uppercase text-black/40 mb-10">
+              Smile
+            </p>
+            <div className="relative w-40 h-40">
+              <div className="absolute inset-0 rounded-full overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80"
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <motion.span
+                className="absolute inset-0 rounded-full border border-[color:var(--chq-green)]"
+                animate={{ scale: [1, 1.08, 1], opacity: [0.9, 0.35, 0.9] }}
+                transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
               />
             </div>
-            <p className="font-mono-chq text-xs tracking-[0.25em] uppercase text-black/50">
-              Biometric Reticle
-            </p>
-            <p className="mt-2 font-display font-bold text-xl text-black">
-              Looking for face...
-            </p>
-          </div>
+          </>
         )}
-
-        {/* Step 1: Face Verified */}
-        {step === 1 && (
-          <div className="flex-1 flex flex-col items-center justify-center">
+        {phase === 3 && (
+          <>
             <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ type: "spring", stiffness: 260, damping: 20 }}
-              className="w-20 h-20 rounded-full bg-green text-black flex items-center justify-center mb-6 shadow-lg"
-            >
-              <Check size={44} strokeWidth={3.5} />
-            </motion.div>
-            <span className="font-mono-chq text-[11px] tracking-widest uppercase text-green bg-black px-3 py-1 rounded-full font-bold">
-              ✓ Liveness Pass
-            </span>
-            <p className="mt-4 font-display font-black text-2xl text-black">
-              Face Verified
-            </p>
-            <p className="mt-1 text-xs text-black/60">3D biometric template created</p>
-          </div>
-        )}
-
-        {/* Step 2: Matching identity... */}
-        {step === 2 && (
-          <div className="flex-1 flex flex-col items-center justify-center">
-            <div className="w-16 h-16 rounded-2xl bg-black text-green flex items-center justify-center mb-6 shadow-md">
-              <ShieldCheck size={36} />
-            </div>
-            <p className="font-mono-chq text-xs tracking-widest uppercase text-black/50">
-              Database Lookup
-            </p>
-            <p className="mt-2 font-display font-bold text-xl text-black">
-              Matching identity...
-            </p>
-            <div className="mt-4 w-32 h-1.5 bg-black/10 rounded-full overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: "100%" }}
-                transition={{ duration: 1.5 }}
-                className="h-full bg-green"
-              />
-            </div>
-          </div>
-        )}
-
-        {/* Step 3: Check-In Complete */}
-        {step === 3 && (
-          <div className="flex-1 flex flex-col items-center justify-center">
-            <motion.div
-              initial={{ scale: 0.5, opacity: 0 }}
+              initial={{ scale: 0.6, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ type: "spring", stiffness: 200, damping: 15 }}
-              className="w-20 h-20 rounded-2xl bg-black text-green flex items-center justify-center mb-4 shadow-xl"
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="w-20 h-20 rounded-full bg-green flex items-center justify-center"
             >
-              <UserCheck size={40} />
+              <Check size={38} className="text-black" strokeWidth={3} />
             </motion.div>
-            <span className="font-mono-chq text-[11px] tracking-widest uppercase text-green bg-black px-3 py-1 rounded-full font-bold">
-              ✓ Identity Confirmed
-            </span>
-            <p className="mt-4 font-display font-black text-2xl text-black">
-              Check-In Complete
+            <p className="mt-8 font-display font-extrabold text-3xl tracking-tight text-black">
+              IN
             </p>
-            <p className="mt-2 font-display text-sm text-black/70 font-medium">
-              Welcome back. Enjoy your stay.
-            </p>
-          </div>
+          </>
         )}
-
-        {/* Bottom indicator */}
-        <div className="w-full pt-4 border-t border-black/10 flex items-center justify-between text-[11px] font-mono-chq text-black/50">
-          <span>Hotel Arrival</span>
-          <span className="text-green-700 font-bold">ChqIn AI</span>
-        </div>
       </motion.div>
     </AnimatePresence>
   );
@@ -144,75 +92,134 @@ function PhoneScreen({ step, reduce }) {
 
 export default function Experience() {
   const ref = useRef(null);
-  const inView = useInView(ref, { amount: 0.5 });
-  const [step, setStep] = useState(0);
-  const reduce = useReducedMotion();
+  const inView = useInView(ref, { amount: 0.45 });
+  const [phase, setPhase] = useState(0);
 
   useEffect(() => {
     if (!inView) return;
-    const id = setInterval(() => setStep((s) => (s + 1) % 4), 2200);
-    return () => clearInterval(id);
-  }, [inView]);
+    const id = setTimeout(
+      () => setPhase((p) => (p + 1) % PHASE_DURATIONS.length),
+      PHASE_DURATIONS[phase]
+    );
+    return () => clearTimeout(id);
+  }, [phase, inView]);
+
+  const settled = false;
 
   return (
     <section
       ref={ref}
-      id="experience"
       data-testid="section-experience"
-      className="relative min-h-screen w-full bg-black flex items-center overflow-hidden border-b border-white/10"
+      className="relative min-h-screen w-full bg-black flex items-center overflow-hidden"
     >
-      <div className="mx-auto max-w-[1600px] w-full px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 items-center gap-16 py-24">
-        <div>
-          <span className="font-mono-chq text-[11px] tracking-[0.3em] uppercase text-white/40">
-            04 — Biometric Intelligence
-          </span>
-          <motion.h2
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-6 font-display font-black tracking-tighter leading-[0.9] text-white text-[clamp(3.5rem,7vw,96px)]"
-          >
-            The engine is <span className="text-green">AI.</span>
-          </motion.h2>
+      {/* Extremely subtle emerald ambient wash behind phone (left side) */}
+      <div
+        className="pointer-events-none absolute left-[-6%] top-1/2 -translate-y-1/2 w-[52vw] max-w-[720px] h-[52vw] max-h-[720px] rounded-full"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(16,224,134,0.14), rgba(16,224,134,0.045) 45%, transparent 68%)",
+          filter: "blur(24px)",
+        }}
+      />
 
-          <p className="mt-6 text-white/60 font-sans text-lg max-w-md leading-relaxed">
-            Watch the phone in action. Real-time liveness detection, encrypted identity matching, and instant check-in verification.
-          </p>
-
-          {/* step ticker */}
-          <div className="mt-10 flex items-center gap-3 flex-wrap">
-            {ALIVE_STEPS.map((s, i) => (
-              <button
-                key={s.tag}
-                onClick={() => setStep(i)}
-                className={`font-mono-chq text-[10px] tracking-[0.2em] uppercase px-4 py-2 rounded-full border transition-all duration-300 ${
-                  i === step
-                    ? "border-[color:var(--chq-green)] text-green bg-green/10 font-bold shadow-[0_0_15px_rgba(0,255,102,0.2)]"
-                    : "border-white/15 text-white/40 hover:text-white/70"
-                }`}
-              >
-                {s.tag}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Phone */}
-        <div className="flex justify-center md:justify-end">
+      <div className="relative mx-auto max-w-[1600px] w-full px-6 md:pl-32 lg:pl-48 md:pr-16 grid grid-cols-1 md:grid-cols-12 items-center gap-12">
+        {/* LEFT — Floating phone / settled identity */}
+        <div className="md:col-span-6 order-1 flex justify-center md:justify-start relative">
+          {/* Floating phone */}
           <motion.div
-            initial={{ opacity: 0, y: 60, rotateX: 12 }}
-            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-[280px] h-[580px] md:w-[320px] md:h-[640px] rounded-[3rem] bg-white p-3 shadow-[0_40px_120px_-20px_rgba(0,255,102,0.3)] border-[6px] border-zinc-800"
-            style={{ perspective: 1000 }}
+            animate={{
+              y: settled ? -14 : [0, -10, 0],
+              opacity: settled ? 0 : 1,
+              scale: settled ? 0.94 : 1,
+              filter: settled ? "blur(10px)" : "blur(0px)",
+            }}
+            transition={{
+              y: settled
+                ? { duration: 1 }
+                : { duration: 6, repeat: Infinity, ease: "easeInOut" },
+              opacity: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
+              scale: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
+              filter: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
+            }}
+            className="relative w-[280px] h-[580px] md:w-[320px] md:h-[660px] rounded-[3rem] bg-white p-3"
+            style={{
+              boxShadow:
+                "0 40px 120px -20px rgba(16,224,134,0.22), 0 0 0 1px rgba(255,255,255,0.04)",
+            }}
           >
             <div className="absolute top-3 left-1/2 -translate-x-1/2 w-28 h-6 bg-black rounded-full z-10" />
             <div className="relative w-full h-full rounded-[2.3rem] bg-white overflow-hidden">
-              <PhoneScreen step={step} reduce={reduce} />
+              <PhoneScreen phase={phase} />
             </div>
           </motion.div>
+
+          {/* Settled identity — only the green mark remains */}
+          <AnimatePresence>
+            {settled && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.7 }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                  y: [0, -8, 0],
+                }}
+                exit={{ opacity: 0, scale: 0.7 }}
+                transition={{
+                  opacity: { duration: 1, ease: [0.22, 1, 0.36, 1] },
+                  scale: { duration: 1, ease: [0.22, 1, 0.36, 1] },
+                  y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+                }}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                <div className="relative">
+                  <div
+                    className="absolute -inset-16 rounded-full pointer-events-none"
+                    style={{
+                      background:
+                        "radial-gradient(circle, rgba(16,224,134,0.35), transparent 65%)",
+                      filter: "blur(20px)",
+                    }}
+                  />
+                  <motion.div
+                    animate={{
+                      boxShadow: [
+                        "0 0 0 0 rgba(16,224,134,0.35)",
+                        "0 0 0 30px rgba(16,224,134,0)",
+                      ],
+                    }}
+                    transition={{ duration: 2.4, repeat: Infinity, ease: "easeOut" }}
+                    className="relative w-24 h-24 rounded-full bg-green flex items-center justify-center"
+                  >
+                    <Check size={44} className="text-black" strokeWidth={3} />
+                  </motion.div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* RIGHT — Story */}
+        <div className="md:col-span-6 order-2 flex flex-col justify-center">
+          <div>
+            <motion.h2
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+              className="font-display font-extrabold text-white text-[clamp(4rem,10.5vw,180px)] leading-[0.86] tracking-[-0.045em]"
+            >
+              Once
+            </motion.h2>
+            <motion.h2
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+              className="font-display font-extrabold text-green text-[clamp(4rem,10.5vw,180px)] leading-[0.86] tracking-[-0.045em]"
+            >
+              Never again
+            </motion.h2>
+          </div>
         </div>
       </div>
     </section>

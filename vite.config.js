@@ -19,22 +19,5 @@ export default defineConfig(({ mode }) => {
       ),
     },
     server: { port: 3000 },
-    build: {
-      rollupOptions: {
-        output: {
-          // Keep the rarely-changing vendor code in its own long-lived chunk
-          // so app edits don't invalidate it in browser caches.
-          manualChunks: {
-            react: [
-              "react",
-              "react-dom",
-              "react-dom/client",
-              "react-router-dom",
-            ],
-            motion: ["framer-motion"],
-          },
-        },
-      },
-    },
   };
 });

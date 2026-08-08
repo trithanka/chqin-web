@@ -33,10 +33,6 @@ export default function Moment() {
       data-testid="section-moment"
       className="relative min-h-screen w-full bg-white flex items-center justify-center overflow-hidden"
     >
-      <span className="absolute top-8 left-6 md:left-12 font-mono-chq text-[11px] tracking-[0.3em] uppercase text-black/40">
-        03 — The moment
-      </span>
-
       <AnimatePresence mode="wait">
         {!done ? (
           <motion.div
@@ -58,7 +54,7 @@ export default function Moment() {
             className="font-display font-black text-black text-center leading-[0.85] text-[clamp(4rem,16vw,240px)] px-4"
             data-testid="youre-in-text"
           >
-            YOU&apos;RE <span className="text-green">IN.</span>
+            YOU&apos;RE <span className="text-green">IN</span>
           </motion.h2>
         )}
       </AnimatePresence>

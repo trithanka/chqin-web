@@ -1,3 +1,5 @@
+import animate from "tailwindcss-animate";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
@@ -48,5 +50,8 @@ export default {
       },
     },
   },
-  plugins: [],
+  // The original build emitted tailwindcss-animate's output (.animate-in,
+  // --tw-enter-opacity, @keyframes enter), which components/ui/dialog.jsx
+  // depends on.
+  plugins: [animate],
 };

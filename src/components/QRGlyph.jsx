@@ -58,13 +58,11 @@ export default function QRGlyph({
       }
     }
   return (
-    // Decorative: this matrix is generated, not a scannable code, so it must
-    // not be announced as one.
     <svg
       viewBox={`0 0 ${size} ${size}`}
       className={className}
-      aria-hidden="true"
-      focusable="false"
+      role="img"
+      aria-label="ChqIn QR"
       shapeRendering="crispEdges"
     >
       {rects}
