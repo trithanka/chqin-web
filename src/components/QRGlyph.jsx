@@ -1,65 +1,70 @@
 import React, { useMemo } from "react";
-
-// Deterministic QR-like matrix with 3 finder patterns. Purely decorative.
-function buildMatrix(size = 25, seedInit = 987654321) {
-  const m = Array.from({ length: size }, () => Array(size).fill(false));
-  let seed = seedInit;
-  const rand = () => {
-    seed = (seed * 1103515245 + 12345) & 0x7fffffff;
-    return seed / 0x7fffffff;
-  };
-  const finder = (r, c) => {
-    for (let i = 0; i < 7; i++)
-      for (let j = 0; j < 7; j++) {
-        const edge = i === 0 || i === 6 || j === 0 || j === 6;
-        const core = i >= 2 && i <= 4 && j >= 2 && j <= 4;
-        m[r + i][c + j] = edge || core;
-      }
-  };
-  const inFinderZone = (i, j) =>
-    (i < 8 && j < 8) ||
-    (i < 8 && j >= size - 8) ||
-    (i >= size - 8 && j < 8);
-  finder(0, 0);
-  finder(0, size - 7);
-  finder(size - 7, 0);
-  for (let i = 0; i < size; i++)
-    for (let j = 0; j < size; j++) {
-      if (inFinderZone(i, j)) continue;
-      m[i][j] = rand() > 0.52;
-    }
-  return m;
-}
+import QRCode from "qrcode";
 
 export default function QRGlyph({
-  size = 25,
-  seed = 987654321,
+  value = "https://chqin-pwa.vercel.app",
   color = "#ffffff",
+  bgColor,
   className = "",
-  cellGap = 0.12,
+  cellGap = 0.08,
+  rx = 0.18,
+  margin = 1,
+  errorCorrectionLevel = "M",
 }) {
-  const matrix = useMemo(() => buildMatrix(size, seed), [size, seed]);
+  const { size, matrix } = useMemo(() => {
+    try {
+      const qr = QRCode.create(value, { errorCorrectionLevel });
+      const s = qr.modules.size;
+      const m = Array.from({ length: s }, (_, r) =>
+        Array.from({ length: s }, (_, c) => Boolean(qr.modules.get(r, c)))
+      );
+      return { size: s, matrix: m };
+    } catch (e) {
+      console.error("Failed to generate QR code", e);
+      return { size: 0, matrix: [] };
+    }
+  }, [value, errorCorrectionLevel]);
+
+  if (!size) return null;
+
   const rects = [];
   const c = 1 - cellGap;
-  for (let i = 0; i < size; i++)
+  const viewBoxSize = size + margin * 2;
+
+  if (bgColor) {
+    rects.push(
+      <rect
+        key="bg"
+        x={0}
+        y={0}
+        width={viewBoxSize}
+        height={viewBoxSize}
+        fill={bgColor}
+      />
+    );
+  }
+
+  for (let i = 0; i < size; i++) {
     for (let j = 0; j < size; j++) {
       if (matrix[i][j]) {
         rects.push(
           <rect
             key={`${i}-${j}`}
-            x={j + cellGap / 2}
-            y={i + cellGap / 2}
+            x={j + margin + cellGap / 2}
+            y={i + margin + cellGap / 2}
             width={c}
             height={c}
-            rx={0.18}
+            rx={rx}
             fill={color}
           />
         );
       }
     }
+  }
+
   return (
     <svg
-      viewBox={`0 0 ${size} ${size}`}
+      viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
       className={className}
       role="img"
       aria-label="ChqIn QR"
@@ -69,3 +74,4 @@ export default function QRGlyph({
     </svg>
   );
 }
+

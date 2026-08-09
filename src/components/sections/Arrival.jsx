@@ -23,10 +23,8 @@ export default function Arrival() {
   const handleActivate = () => {
     setAck(true);
     setTimeout(() => {
-      const next = document.querySelector("[data-testid='section-experience']");
-      if (next) next.scrollIntoView({ behavior: "smooth", block: "start" });
-      setTimeout(() => setAck(false), 400);
-    }, 260);
+      window.location.href = "https://chqin-pwa.vercel.app";
+    }, 300);
   };
 
   return (
@@ -89,13 +87,13 @@ export default function Arrival() {
               onBlur={() => setHover(false)}
               animate={{ scale: hover ? 1.03 : 1 }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-              aria-label="Scan to begin"
+              aria-label="Scan or click to open ChqIn PWA"
               className={`relative outline-none group cursor-pointer bg-transparent ${
                 ack ? "qr-ack" : ""
               }`}
             >
               <div className="qr-alive relative w-[64vw] max-w-[380px] md:w-[30vw] md:max-w-[420px] aspect-square">
-                <QRGlyph color="#ffffff" seed={424242} className="w-full h-full" />
+                <QRGlyph color="#ffffff" value="https://chqin-pwa.vercel.app" className="w-full h-full" />
 
                 {/* Corner brackets — animate outward on hover */}
                 {[

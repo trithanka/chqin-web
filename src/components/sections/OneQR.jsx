@@ -120,15 +120,21 @@ export default function OneQR() {
               filter: "blur(32px)",
             }}
           />
-          <motion.div
+          <motion.a
+            href="https://chqin-pwa.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-testid="oneqr-link"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-            className="qr-alive relative w-[70vw] max-w-[360px] md:w-[26vw] md:max-w-[380px] aspect-square rounded-2xl bg-white p-4"
+            whileHover={{ scale: 1.03 }}
+            aria-label="Scan or click to open ChqIn PWA"
+            className="qr-alive relative block w-[70vw] max-w-[360px] md:w-[26vw] md:max-w-[380px] aspect-square rounded-2xl bg-white p-4 cursor-pointer"
           >
-            <QRGlyph color="#000000" seed={424242} className="w-full h-full" />
-          </motion.div>
+            <QRGlyph color="#000000" value="https://chqin-pwa.vercel.app" className="w-full h-full" />
+          </motion.a>
 
           {/* Tiny "You're in" ping — pulses briefly on each env change */}
           <AnimatePresence>
