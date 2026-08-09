@@ -45,9 +45,9 @@ export default function Arrival() {
         }}
       />
 
-      <div className="relative mx-auto max-w-[1600px] w-full h-screen px-6 md:px-16 grid grid-cols-1 md:grid-cols-12 items-center gap-8">
+      <div className="relative mx-auto max-w-[1600px] w-full min-h-screen md:h-screen px-6 md:px-16 grid grid-cols-1 md:grid-cols-12 items-center gap-8 py-16 md:py-0">
         {/* LEFT — poster command */}
-        <div className="md:col-span-6 relative z-10">
+        <div className="md:col-span-6 relative z-10 flex flex-col items-center md:items-start text-center md:text-left">
           {/* Huge poster command */}
           <div>
             <div className="overflow-hidden">
@@ -56,7 +56,7 @@ export default function Arrival() {
                 custom={1}
                 initial="hidden"
                 animate="show"
-                className="font-display font-extrabold text-[clamp(4rem,12vw,168px)] leading-[0.9] tracking-[-0.045em] whitespace-nowrap"
+                className="font-display font-extrabold text-[clamp(2.2rem,11vw,168px)] leading-[0.92] md:leading-[0.9] tracking-[-0.03em] whitespace-nowrap text-center md:text-left"
               >
                 <span className="text-white">SCAN </span>
                 <span className="text-green">IN</span>
@@ -65,9 +65,9 @@ export default function Arrival() {
           </div>
 
           {/* Sub heading */}
-          <div className={`mt-3 md:mt-4 text-center reveal-fade ${revealed ? "in" : ""}`}>
-            <p className="font-display font-medium text-white/60 text-[clamp(1.4rem,2.2vw,32px)] tracking-tight">
-              Check in in 5 seconds.
+          <div className={`mt-3 md:mt-4 text-center md:text-left reveal-fade ${revealed ? "in" : ""}`}>
+            <p className="font-display font-medium text-white/60 text-[clamp(1.1rem,2.2vw,32px)] tracking-tight">
+              Check in in 3 seconds.
             </p>
           </div>
         </div>

@@ -61,7 +61,7 @@ export default function Final() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.1, ease: easing, delay: 0.15 }}
-          className="font-display font-extrabold text-white leading-[0.9] tracking-[-0.045em] text-[clamp(2.6rem,7vw,120px)] max-w-[16ch]"
+          className="font-display font-extrabold text-white leading-[0.92] md:leading-[0.9] tracking-[-0.03em] text-[clamp(2rem,6.5vw,120px)] max-w-[16ch]"
         >
           Join the next
           <br />

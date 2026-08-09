@@ -41,6 +41,14 @@ export default function Business() {
 
   const tiles = useMemo(buildTiles, []);
 
+  React.useEffect(() => {
+    // Preload mosaic entrance photos for smooth camera zoom out
+    IMAGES.forEach((url) => {
+      const img = new Image();
+      img.src = url;
+    });
+  }, []);
+
   return (
     <section
       ref={ref}
@@ -106,8 +114,8 @@ export default function Business() {
           style={{ opacity: textOpacity, y: textY }}
           className="absolute bottom-16 md:bottom-24 left-0 right-0 z-10 px-6 md:px-16"
         >
-          <div className="mx-auto max-w-[1600px] w-full">
-            <h2 className="font-display font-extrabold text-white leading-[0.88] tracking-[-0.045em] text-[clamp(2.8rem,7.5vw,140px)] max-w-[18ch]">
+          <div className="mx-auto max-w-[1600px] w-full flex flex-col items-center md:items-start text-center md:text-left">
+            <h2 className="font-display font-extrabold text-white leading-[0.92] md:leading-[0.88] tracking-[-0.03em] text-[clamp(2rem,7vw,140px)] max-w-[18ch] text-center md:text-left">
               The new standard
               <br />
               of <span className="text-green">arrival.</span>

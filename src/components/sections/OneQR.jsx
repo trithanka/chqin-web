@@ -40,6 +40,14 @@ export default function OneQR() {
   const [pingKey, setPingKey] = useState(0);
 
   useEffect(() => {
+    // Preload all environment images for zero latency, flicker-free background slides
+    ENVIRONMENTS.forEach((e) => {
+      const img = new Image();
+      img.src = e.url;
+    });
+  }, []);
+
+  useEffect(() => {
     const id = setInterval(() => {
       setIdx((i) => (i + 1) % ENVIRONMENTS.length);
       setPingKey((k) => k + 1);
@@ -87,13 +95,13 @@ export default function OneQR() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-10 md:mb-14"
+          className="mb-8 md:mb-14"
         >
-          <h2 className="font-display font-extrabold text-white leading-[0.9] tracking-[-0.045em] text-[clamp(3rem,9vw,138px)]">
-            One scan
+          <h2 className="font-display font-extrabold text-white leading-[0.92] md:leading-[0.9] tracking-[-0.03em] text-[clamp(2.1rem,8.5vw,138px)]">
+            One Scan
           </h2>
-          <h2 className="font-display font-extrabold text-white leading-[0.9] tracking-[-0.045em] text-[clamp(3rem,9vw,138px)]">
-            Every entrance
+          <h2 className="font-display font-extrabold text-white leading-[0.92] md:leading-[0.9] tracking-[-0.03em] text-[clamp(2.1rem,8.5vw,138px)]">
+            Every Entrance
           </h2>
         </motion.div>
 
@@ -129,7 +137,7 @@ export default function OneQR() {
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: [0, 1, 1, 0], y: [6, 0, 0, -4] }}
               transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], times: [0, 0.15, 0.75, 1] }}
-              className="absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 translate-x-full flex items-center gap-2 whitespace-nowrap"
+              className="absolute -bottom-8 left-1/2 -translate-x-1/2 md:bottom-auto md:top-1/2 md:-right-8 md:translate-x-full md:-translate-y-1/2 flex items-center gap-2 whitespace-nowrap"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-green" />
               <span className="font-mono-chq text-[10px] tracking-[0.28em] uppercase text-green">

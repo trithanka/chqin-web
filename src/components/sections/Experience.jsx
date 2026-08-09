@@ -199,14 +199,14 @@ export default function Experience() {
         </div>
 
         {/* RIGHT — Story */}
-        <div className="md:col-span-6 order-2 flex flex-col justify-center">
+        <div className="md:col-span-6 order-2 flex flex-col justify-center items-center md:items-start text-center md:text-left">
           <div>
             <motion.h2
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display font-extrabold text-white text-[clamp(4rem,10.5vw,180px)] leading-[0.86] tracking-[-0.045em]"
+              className="font-display font-extrabold text-white text-[clamp(2.5rem,10.5vw,180px)] leading-[0.88] tracking-[-0.03em] text-center md:text-left"
             >
               Once
             </motion.h2>
@@ -215,9 +215,9 @@ export default function Experience() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-              className="font-display font-extrabold text-green text-[clamp(4rem,10.5vw,180px)] leading-[0.86] tracking-[-0.045em]"
+              className="font-display font-extrabold text-green text-[clamp(2.5rem,10.5vw,180px)] leading-[0.88] tracking-[-0.03em] text-center md:text-left"
             >
-              Never again
+              Never Again
             </motion.h2>
           </div>
         </div>
