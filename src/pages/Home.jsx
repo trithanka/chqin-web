@@ -22,15 +22,10 @@ export default function Home() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const goToFinal = () => {
-    const el = document.getElementById("final");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <main className="bg-black">
       <Toaster position="top-center" theme="dark" />
-      <Navigation visible={navVisible} onCta={goToFinal} />
+      <Navigation visible={navVisible} />
       <Arrival />
       <Experience />
       <Moment />
