@@ -19,8 +19,8 @@ export default function Footer() {
       <div className="mx-auto max-w-[1200px] w-full px-6 py-24 md:py-32 flex flex-col items-center gap-16 md:gap-20 text-center">
         {/* Wordmark */}
         <div>
-          <h3 className="font-display font-extrabold tracking-tighter leading-none text-black text-[clamp(3.2rem,8vw,120px)]">
-            Chq<span className="text-green">In</span>
+          <h3 className="font-logo leading-none text-black text-[clamp(3.2rem,8vw,120px)]">
+            Chq<span className="text-brand-gradient">In</span>
           </h3>
           <p className="mt-3 font-display font-medium tracking-tight text-black/60 text-[clamp(1.1rem,1.5vw,20px)]">
             Scan. In.
@@ -37,7 +37,7 @@ export default function Footer() {
               className="group relative font-mono-chq text-[11px] tracking-[0.22em] uppercase text-black/60 hover:text-black transition-colors duration-500"
             >
               {label}
-              <span className="pointer-events-none absolute left-0 right-0 -bottom-1.5 h-px bg-[color:var(--chq-green)] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+              <span className="pointer-events-none absolute left-0 right-0 -bottom-1.5 h-px bg-[color:var(--brand)] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" />
             </a>
           ))}
         </nav>
@@ -50,7 +50,7 @@ export default function Footer() {
               href={href}
               aria-label={label}
               data-testid={`footer-social-${label.toLowerCase()}`}
-              className="text-black/55 hover:text-green transition-colors duration-500"
+              className="text-black/55 hover:text-brand transition-colors duration-500"
             >
               <Icon size={19} strokeWidth={1.5} />
             </a>

@@ -118,7 +118,7 @@ export default function Business() {
             <h2 className="font-display font-extrabold text-white leading-[0.92] md:leading-[0.88] tracking-[-0.03em] text-[clamp(2rem,7vw,140px)] max-w-[18ch] text-center md:text-left">
               The new standard
               <br />
-              of <span className="text-green">arrival.</span>
+              of <span className="text-brand-gradient">arrival.</span>
             </h2>
           </div>
         </motion.div>

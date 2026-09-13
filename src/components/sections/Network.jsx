@@ -99,7 +99,7 @@ export default function Network() {
                   animate={{ y: "0%", opacity: 1, scale: 1, filter: "blur(0px)" }}
                   exit={{ y: "-85%", opacity: 0, scale: 0.92, filter: "blur(6px)" }}
                   transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                  className={`inline-block text-green pr-[0.18em] tracking-[0.015em] ${currentVariant.fontClass} drop-shadow-[0_0_24px_rgba(16,224,134,0.45)]`}
+                  className={`inline-block text-brand-gradient pr-[0.18em] tracking-[0.015em] ${currentVariant.fontClass} drop-shadow-[0_0_24px_rgb(var(--brand-rgb)/0.45)]`}
                 >
                   {currentVariant.text}
                 </motion.span>
@@ -109,7 +109,7 @@ export default function Network() {
           </motion.h2>
 
           <div className="mt-4 md:mt-6 flex items-center justify-center md:justify-start gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-green animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
             <AnimatePresence mode="wait">
               <motion.span
                 key={currentVariant.lang}
@@ -133,7 +133,7 @@ export default function Network() {
               className="absolute inset-0 pointer-events-none"
               style={{
                 background:
-                  "radial-gradient(circle at 50% 50%, rgba(16,224,134,0.10), transparent 60%)",
+                  "radial-gradient(circle at 50% 50%, rgb(var(--brand-rgb) / 0.10), transparent 60%)",
                 filter: "blur(30px)",
               }}
             />
@@ -153,11 +153,11 @@ export default function Network() {
                     transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                     className="flex items-center gap-2"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-green" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand" />
                     <span className="font-display font-medium text-white text-sm tracking-tight">
                       {currentNode.name}
                     </span>
-                    <span className="font-mono-chq text-[10px] tracking-[0.2em] uppercase text-green">
+                    <span className="font-mono-chq text-[10px] tracking-[0.2em] uppercase text-brand">
                       · {currentNode.cat}
                     </span>
                   </motion.div>
@@ -177,8 +177,8 @@ export default function Network() {
                     coordinate space, so every city sits where it actually is. */}
                 <motion.path
                   d={INDIA_PATH}
-                  fill="rgba(16,224,134,0.05)"
-                  stroke="var(--chq-green)"
+                  fill="rgb(var(--brand-rgb) / 0.05)"
+                  stroke="var(--brand)"
                   strokeWidth={0.22}
                   strokeOpacity={0.45}
                   strokeLinejoin="round"
@@ -197,7 +197,7 @@ export default function Network() {
                       y1={NODES[a].y}
                       x2={NODES[b].x}
                       y2={NODES[b].y}
-                      stroke="var(--chq-green)"
+                      stroke="var(--brand)"
                       strokeWidth={0.18}
                       strokeOpacity={on ? 0.55 : 0}
                       strokeLinecap="round"
@@ -221,7 +221,7 @@ export default function Network() {
                           cy={n.y}
                           r={0.9}
                           fill="none"
-                          stroke="var(--chq-green)"
+                          stroke="var(--brand)"
                           strokeWidth={0.18}
                           initial={{ r: 0.9, opacity: 0.9 }}
                           animate={{ r: 4, opacity: 0 }}
@@ -232,14 +232,14 @@ export default function Network() {
                         cx={n.x}
                         cy={n.y}
                         r={on ? 0.85 : 0}
-                        fill="var(--chq-green)"
+                        fill="var(--brand)"
                         initial={{ opacity: 0, r: 0 }}
                         animate={{
                           opacity: on ? 1 : 0,
                           r: isCurrent ? [1.4, 0.9] : on ? 0.9 : 0,
                         }}
                         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                        style={{ filter: on ? "drop-shadow(0 0 1.4px var(--chq-green))" : "none" }}
+                        style={{ filter: on ? "drop-shadow(0 0 1.4px var(--brand))" : "none" }}
                       />
                     </g>
                   );
@@ -249,7 +249,7 @@ export default function Network() {
 
             {/* Bottom whisper */}
             <div className="absolute -bottom-2 left-0 flex items-center gap-3 opacity-60">
-              <span className="w-2 h-2 rounded-full bg-green animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-brand animate-pulse" />
               <span className="font-mono-chq text-[10px] tracking-[0.2em] uppercase text-white/50">
                 {active} entrance{active === 1 ? "" : "s"} · online
               </span>

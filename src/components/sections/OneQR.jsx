@@ -116,12 +116,12 @@ export default function OneQR() {
             className="absolute -inset-20 rounded-full pointer-events-none"
             style={{
               background:
-                "radial-gradient(circle, rgba(16,224,134,0.35), rgba(16,224,134,0.08) 45%, transparent 70%)",
+                "radial-gradient(circle, rgb(var(--brand-rgb) / 0.35), rgb(var(--brand-rgb) / 0.08) 45%, transparent 70%)",
               filter: "blur(32px)",
             }}
           />
           <motion.a
-            href="https://chqin-pwa.vercel.app"
+            href="https://business.chqin.in/"
             target="_blank"
             rel="noopener noreferrer"
             data-testid="oneqr-link"
@@ -133,7 +133,7 @@ export default function OneQR() {
             aria-label="Scan or click to open ChqIn PWA"
             className="qr-alive relative block w-[70vw] max-w-[360px] md:w-[26vw] md:max-w-[380px] aspect-square rounded-2xl bg-white p-4 cursor-pointer"
           >
-            <QRGlyph color="#000000" value="https://chqin-pwa.vercel.app" className="w-full h-full" />
+            <QRGlyph color="#000000" value="https://business.chqin.in/" className="w-full h-full" />
           </motion.a>
 
           {/* Tiny "You're in" ping — pulses briefly on each env change */}
@@ -145,8 +145,8 @@ export default function OneQR() {
               transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], times: [0, 0.15, 0.75, 1] }}
               className="absolute -bottom-8 left-1/2 -translate-x-1/2 md:bottom-auto md:top-1/2 md:-right-8 md:translate-x-full md:-translate-y-1/2 flex items-center gap-2 whitespace-nowrap"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-green" />
-              <span className="font-mono-chq text-[10px] tracking-[0.28em] uppercase text-green">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand" />
+              <span className="font-mono-chq text-[10px] tracking-[0.28em] uppercase text-brand">
                 You&apos;re in
               </span>
             </motion.div>

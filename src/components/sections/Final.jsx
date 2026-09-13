@@ -16,7 +16,7 @@ export default function Final() {
         className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[65%] w-[80vw] max-w-[720px] h-[60vw] max-h-[540px] rounded-full"
         style={{
           background:
-            "radial-gradient(circle at center, rgba(16,224,134,0.10), rgba(16,224,134,0.03) 45%, transparent 70%)",
+            "radial-gradient(circle at center, rgb(var(--brand-rgb) / 0.10), rgb(var(--brand-rgb) / 0.03) 45%, transparent 70%)",
           filter: "blur(38px)",
         }}
       />
@@ -61,7 +61,7 @@ export default function Final() {
           style={{ boxShadow: "0 10px 40px -10px rgba(255,255,255,0.15)" }}
           onMouseEnter={(e) => {
             e.currentTarget.style.boxShadow =
-              "0 0 0 1px rgba(16,224,134,0.5), 0 0 60px 4px rgba(16,224,134,0.35)";
+              "0 0 0 1px rgb(var(--brand-rgb) / 0.5), 0 0 60px 4px rgb(var(--brand-rgb) / 0.35)";
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.boxShadow =

@@ -2,14 +2,16 @@ import React, { useMemo } from "react";
 import QRCode from "qrcode";
 
 export default function QRGlyph({
-  value = "https://chqin-pwa.vercel.app",
+  value = "https://business.chqin.in/",
   color = "#ffffff",
   bgColor,
   className = "",
   cellGap = 0.08,
   rx = 0.18,
   margin = 1,
-  errorCorrectionLevel = "M",
+  errorCorrectionLevel = "H", // high error correction so the centre logo doesn't break scanning
+  logo = "/favicon.png",
+  logoScale = 0.18,
 }) {
   const { size, matrix } = useMemo(() => {
     try {
@@ -31,6 +33,16 @@ export default function QRGlyph({
   const c = 1 - cellGap;
   const viewBoxSize = size + margin * 2;
 
+  // Modules hidden behind the logo (plus a one-module quiet ring) are skipped
+  const logoSize = Math.round(size * logoScale);
+  const logoStart = Math.floor((size - logoSize) / 2);
+  const isUnderLogo = (i, j) =>
+    logo &&
+    i >= logoStart - 1 &&
+    i <= logoStart + logoSize &&
+    j >= logoStart - 1 &&
+    j <= logoStart + logoSize;
+
   if (bgColor) {
     rects.push(
       <rect
@@ -46,7 +58,7 @@ export default function QRGlyph({
 
   for (let i = 0; i < size; i++) {
     for (let j = 0; j < size; j++) {
-      if (matrix[i][j]) {
+      if (matrix[i][j] && !isUnderLogo(i, j)) {
         rects.push(
           <rect
             key={`${i}-${j}`}
@@ -71,6 +83,15 @@ export default function QRGlyph({
       shapeRendering="crispEdges"
     >
       {rects}
+      {logo && (
+        <image
+          href={logo}
+          x={logoStart + margin}
+          y={logoStart + margin}
+          width={logoSize}
+          height={logoSize}
+        />
+      )}
     </svg>
   );
 }

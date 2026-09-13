@@ -19,9 +19,9 @@ export default function Navigation({ visible }) {
             <a
               href="#top"
               data-testid="nav-logo"
-              className="font-display text-2xl md:text-3xl font-black tracking-tight text-white select-none"
+              className="font-logo text-2xl md:text-3xl text-white select-none"
             >
-              Chq<span className="text-green">In</span>
+              Chq<span className="text-brand-gradient">In</span>
             </a>
 
             <div className="hidden md:flex items-center gap-10">
@@ -42,7 +42,7 @@ export default function Navigation({ visible }) {
               target="_blank"
               rel="noopener noreferrer"
               data-testid="nav-cta"
-              className="group relative overflow-hidden rounded-full bg-green text-black font-semibold text-sm px-5 md:px-7 py-2.5 tracking-tight transition-transform duration-300 hover:scale-[1.03]"
+              className="group relative overflow-hidden rounded-full bg-brand text-black font-semibold text-sm px-5 md:px-7 py-2.5 tracking-tight transition-transform duration-300 hover:scale-[1.03]"
             >
               Try ChqIn
             </a>

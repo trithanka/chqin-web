@@ -9,7 +9,7 @@ const line = {
     transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.25 + i * 0.14 },
   }),
 };
-
+//
 export default function Arrival() {
   const [revealed, setRevealed] = useState(false);
   const [hover, setHover] = useState(false);
@@ -23,7 +23,7 @@ export default function Arrival() {
   const handleActivate = () => {
     setAck(true);
     setTimeout(() => {
-      window.location.href = "https://chqin-pwa.vercel.app";
+      window.location.href = "https://business.chqin.in/";
     }, 300);
   };
 
@@ -38,7 +38,7 @@ export default function Arrival() {
         className="pointer-events-none absolute right-[-8%] top-1/2 -translate-y-1/2 w-[70vw] max-w-[900px] h-[70vw] max-h-[900px] rounded-full"
         style={{
           background:
-            "radial-gradient(circle at center, rgba(16,224,134,0.18), rgba(16,224,134,0.06) 40%, transparent 65%)",
+            "radial-gradient(circle at center, rgb(var(--brand-rgb) / 0.18), rgb(var(--brand-rgb) / 0.06) 40%, transparent 65%)",
           filter: "blur(20px)",
         }}
       />
@@ -57,7 +57,7 @@ export default function Arrival() {
                 className="font-display font-extrabold text-[clamp(2.2rem,11vw,168px)] leading-[0.92] md:leading-[0.9] tracking-[-0.03em] whitespace-nowrap text-center md:text-left"
               >
                 <span className="text-white">SCAN </span>
-                <span className="text-green">IN</span>
+                <span className="text-brand-gradient">IN</span>
               </motion.h1>
             </div>
           </div>
@@ -93,7 +93,7 @@ export default function Arrival() {
               }`}
             >
               <div className="qr-alive relative w-[64vw] max-w-[380px] md:w-[30vw] md:max-w-[420px] aspect-square">
-                <QRGlyph color="#ffffff" value="https://chqin-pwa.vercel.app" className="w-full h-full" />
+                <QRGlyph color="#ffffff" value="https://business.chqin.in/" className="w-full h-full" />
 
                 {/* Corner brackets — animate outward on hover */}
                 {[
@@ -110,7 +110,7 @@ export default function Arrival() {
                       opacity: hover ? 1 : 0.85,
                     }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    className={`absolute w-10 h-10 border-[color:var(--chq-green)] ${c.pos}`}
+                    className={`absolute w-10 h-10 border-[color:var(--brand)] ${c.pos}`}
                     style={{ margin: "-18px" }}
                   />
                 ))}
@@ -122,8 +122,8 @@ export default function Arrival() {
                       className="qr-scan-line absolute left-0 right-0 h-[3px]"
                       style={{
                         background:
-                          "linear-gradient(90deg, transparent, var(--chq-green) 50%, transparent)",
-                        boxShadow: "0 0 24px 4px var(--chq-green)",
+                          "linear-gradient(90deg, transparent, var(--brand) 50%, transparent)",
+                        boxShadow: "0 0 24px 4px var(--brand)",
                       }}
                     />
                   </div>
