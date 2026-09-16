@@ -20,7 +20,7 @@ export default function Footer() {
         {/* Wordmark */}
         <div>
           <h3 className="font-logo leading-none text-black text-[clamp(3.2rem,8vw,120px)]">
-            Chq<span className="text-brand-gradient">In</span>
+            Chq<span className="text-brand-gradient">In</span><sup className="ml-[0.08em] align-super text-[0.35em] font-sans font-semibold tracking-normal">™</sup>
           </h3>
           <p className="mt-3 font-display font-medium tracking-tight text-black/60 text-[clamp(1.1rem,1.5vw,20px)]">
             Scan. In.

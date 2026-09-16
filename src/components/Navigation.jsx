@@ -21,7 +21,7 @@ export default function Navigation({ visible }) {
               data-testid="nav-logo"
               className="font-logo text-2xl md:text-3xl text-white select-none"
             >
-              Chq<span className="text-brand-gradient">In</span>
+              Chq<span className="text-brand-gradient">In</span><sup className="ml-[0.08em] align-super text-[0.35em] font-sans font-semibold tracking-normal">™</sup>
             </a>
 
             <div className="hidden md:flex items-center gap-10">

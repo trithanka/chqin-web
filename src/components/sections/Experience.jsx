@@ -48,7 +48,7 @@ function PhoneScreen({ phase }) {
       {/* App header + step progress */}
       <div className="mt-6 px-6 flex items-center justify-between">
         <span className="font-logo text-lg text-white">
-          Chq<span className="text-brand-gradient">In</span>
+          Chq<span className="text-brand-gradient">In</span><sup className="ml-[0.08em] align-super text-[0.35em] font-sans font-semibold tracking-normal">™</sup>
         </span>
         <span className="font-mono-chq text-[9px] tracking-[0.2em] uppercase text-white/40">
           Step {phase + 1}/{PHASE_DURATIONS.length}
