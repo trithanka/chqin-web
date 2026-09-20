@@ -2,7 +2,7 @@ import React, { useMemo, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 // 12 unique standee-in-environment photos generated with Nano Banana
-const IMAGES = Array.from({ length: 12 }, (_, i) => `/mosaic/env-${String(i + 1).padStart(2, "0")}.png`);
+const IMAGES = Array.from({ length: 11 }, (_, i) => `/mosaic/env-${String(i + 1).padStart(2, "0")}.webp`);
 
 const COLS = 14;
 const ROWS = 10;

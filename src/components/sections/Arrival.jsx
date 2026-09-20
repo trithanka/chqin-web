@@ -65,7 +65,7 @@ export default function Arrival() {
           {/* Sub heading */}
           <div className={`mt-3 md:mt-4 text-center md:text-left reveal-fade ${revealed ? "in" : ""}`}>
             <p className="font-display font-medium text-white/60 text-[clamp(1.1rem,2.2vw,32px)] tracking-tight">
-              Check in in 3 seconds.
+              Check in seconds.
             </p>
           </div>
         </div>

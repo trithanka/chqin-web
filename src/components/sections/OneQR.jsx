@@ -3,34 +3,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import QRGlyph from "@/components/QRGlyph";
 
 const ENVIRONMENTS = [
-  {
-    name: "Apartments",
-    url: "https://images.pexels.com/photos/18153132/pexels-photo-18153132.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=900&w=1600",
-  },
-  {
-    name: "Hotels",
-    url: "https://images.unsplash.com/photo-1660557989695-14fac79c086d?crop=entropy&cs=srgb&fm=jpg&q=85&w=1800",
-  },
-  {
-    name: "Offices",
-    url: "https://images.pexels.com/photos/13219418/pexels-photo-13219418.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=900&w=1600",
-  },
-  {
-    name: "Hospitals",
-    url: "https://images.unsplash.com/photo-1587351021355-a479a299d2f9?auto=format&fit=crop&w=1800&q=80",
-  },
-  {
-    name: "Campuses",
-    url: "https://images.unsplash.com/photo-1576495199011-eb94736d05d6?crop=entropy&cs=srgb&fm=jpg&q=85&w=1800",
-  },
-  {
-    name: "Events",
-    url: "https://images.pexels.com/photos/26447525/pexels-photo-26447525.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=900&w=1600",
-  },
-  {
-    name: "Coworking",
-    url: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=80",
-  },
+  { name: "Hotels", url: "/mosaic/env-01.webp" },
+  { name: "Apartments", url: "/mosaic/env-02.webp" },
+  { name: "Conferences", url: "/mosaic/env-03.webp" },
+  { name: "Temples", url: "/mosaic/env-04.webp" },
+  { name: "Stadiums", url: "/mosaic/env-05.webp" },
+  { name: "Malls", url: "/mosaic/env-06.webp" },
+  { name: "Metro", url: "/mosaic/env-07.webp" },
+  { name: "Railways", url: "/mosaic/env-08.webp" },
+  { name: "Hospitals", url: "/mosaic/env-09.webp" },
+  { name: "Public events", url: "/mosaic/env-10.webp" },
+  { name: "Airports", url: "/mosaic/env-11.webp" },
 ];
 
 const CYCLE_MS = 3600;
