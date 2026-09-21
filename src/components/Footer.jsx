@@ -1,13 +1,12 @@
 import React from "react";
-import { Linkedin, Twitter, Instagram, Github } from "lucide-react";
+import { Instagram, Facebook, Linkedin } from "lucide-react";
 
 const NAV = ["Product", "Business", "Developers", "Pricing", "About", "Contact"];
 
 const SOCIAL = [
-  { label: "LinkedIn", Icon: Linkedin, href: "#" },
-  { label: "X", Icon: Twitter, href: "#" },
-  { label: "Instagram", Icon: Instagram, href: "#" },
-  { label: "GitHub", Icon: Github, href: "#" },
+  { label: "Instagram", Icon: Instagram, href: "https://www.instagram.com/chqin.in/" },
+  { label: "Facebook", Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61594384859010" },
+  { label: "LinkedIn", Icon: Linkedin, href: "https://www.linkedin.com/company/chqin/about/?viewAsMember=true" },
 ];
 
 export default function Footer() {
@@ -48,6 +47,8 @@ export default function Footer() {
             <a
               key={label}
               href={href}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label={label}
               data-testid={`footer-social-${label.toLowerCase()}`}
               className="text-black/55 hover:text-brand transition-colors duration-500"

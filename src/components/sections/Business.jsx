@@ -1,11 +1,11 @@
 import React, { useMemo, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-// 12 unique standee-in-environment photos generated with Nano Banana
+// 11 unique standee-in-environment photos generated with Nano Banana
 const IMAGES = Array.from({ length: 11 }, (_, i) => `/mosaic/env-${String(i + 1).padStart(2, "0")}.webp`);
 
-const COLS = 14;
-const ROWS = 10;
+const COLS = 10;
+const ROWS = 7;
 
 // Deterministic "shuffled" fill so it feels like every tile is a different place.
 function buildTiles() {
@@ -17,7 +17,8 @@ function buildTiles() {
     return seed / 0x7fffffff;
   };
   for (let i = 0; i < total; i++) {
-    const imgIdx = Math.floor(rand() * IMAGES.length);
+    // Stepping by 4 spreads photos evenly and keeps neighbours (left/right and above/below) different
+    const imgIdx = (i * 4) % IMAGES.length;
     // subtle per-tile variation for a "hand-shot" feel
     const brightness = 0.78 + rand() * 0.42; // 0.78–1.20
     const rotate = (rand() - 0.5) * 0.4; // -0.2..0.2 deg
@@ -34,7 +35,7 @@ export default function Business() {
   });
 
   // Camera zoom out: close-up on ONE entrance → wall of hundreds
-  const scale = useTransform(scrollYProgress, [0, 0.75, 1], [7, 1, 0.85]);
+  const scale = useTransform(scrollYProgress, [0, 0.75, 1], [5, 1, 0.9]);
   const textOpacity = useTransform(scrollYProgress, [0.55, 0.78], [0, 1]);
   const textY = useTransform(scrollYProgress, [0.55, 0.78], [30, 0]);
   const vignette = useTransform(scrollYProgress, [0, 0.6, 1], [0.35, 0.15, 0.45]);
