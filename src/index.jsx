@@ -4,6 +4,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "@/index.css";
 import App from "@/App";
 
+// Wake the backend (cold start). Fire-and-forget: never blocks or affects the UI.
+fetch("https://api.chqin.in/health", { mode: "no-cors" }).catch(() => {});
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
