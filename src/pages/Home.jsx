@@ -9,9 +9,11 @@ import Network from "@/components/sections/Network";
 import Business from "@/components/sections/Business";
 import Final from "@/components/sections/Final";
 import Footer from "@/components/Footer";
+import TryModal from "@/components/TryModal";
 
 export default function Home() {
   const [navVisible, setNavVisible] = useState(false);
+  const [tryOpen, setTryOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -25,14 +27,15 @@ export default function Home() {
   return (
     <main className="bg-black">
       <Toaster position="top-center" theme="dark" />
-      <Navigation visible={navVisible} />
+      <Navigation visible={navVisible} onTry={() => setTryOpen(true)} />
       <Arrival />
       <Experience />
       <Moment />
       <OneQR />
       <Network />
       <Business />
-      <Final />
+      <Final onTry={() => setTryOpen(true)} />
+      <TryModal open={tryOpen} onOpenChange={setTryOpen} />
       <Footer />
     </main>
   );

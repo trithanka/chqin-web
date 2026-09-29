@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const LINKS = [];
 
-export default function Navigation({ visible }) {
+export default function Navigation({ visible, onTry }) {
   return (
     <AnimatePresence>
       {visible && (
@@ -37,15 +37,14 @@ export default function Navigation({ visible }) {
               ))}
             </div>
 
-            <a
-              href="https://business.chqin.in/"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={onTry}
               data-testid="nav-cta"
               className="group relative overflow-hidden rounded-full bg-brand text-black font-semibold text-sm px-5 md:px-7 py-2.5 tracking-tight transition-transform duration-300 hover:scale-[1.03]"
             >
               Try ChqIn
-            </a>
+            </button>
           </nav>
         </motion.header>
       )}

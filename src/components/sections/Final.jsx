@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 const easing = [0.22, 1, 0.36, 1];
 
-export default function Final() {
+export default function Final({ onTry }) {
   return (
     <section
       id="final"
@@ -47,10 +47,9 @@ export default function Final() {
         </motion.p>
 
         {/* Primary CTA — one button only */}
-        <motion.a
-          href="https://business.chqin.in/"
-          target="_blank"
-          rel="noopener noreferrer"
+        <motion.button
+          type="button"
+          onClick={onTry}
           data-testid="final-cta"
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -70,7 +69,7 @@ export default function Final() {
         >
           Try ChqIn
           <ArrowRight size={18} strokeWidth={2.5} className="transition-transform duration-500 group-hover:translate-x-1" />
-        </motion.a>
+        </motion.button>
       </div>
     </section>
   );
