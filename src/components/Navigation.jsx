@@ -41,9 +41,9 @@ export default function Navigation({ visible, onTry }) {
               type="button"
               onClick={onTry}
               data-testid="nav-cta"
-              className="group relative overflow-hidden rounded-full bg-brand text-black font-semibold text-sm px-5 md:px-7 py-2.5 tracking-tight transition-transform duration-300 hover:scale-[1.03]"
+              className="btn-try rounded-2xl text-sm md:text-base px-5 md:px-6 py-2"
             >
-              Try ChqIn
+              Try Chq<span className="text-brand-gradient">In</span>
             </button>
           </nav>
         </motion.header>

@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 
 const easing = [0.22, 1, 0.36, 1];
 
@@ -55,20 +54,9 @@ export default function Final({ onTry }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, ease: easing, delay: 0.95 }}
-          whileHover={{ scale: 1.02 }}
-          className="mt-12 md:mt-16 group relative inline-flex items-center gap-3 rounded-full bg-white text-black font-semibold text-base md:text-lg px-8 md:px-10 py-4 md:py-5 tracking-tight transition-shadow duration-500"
-          style={{ boxShadow: "0 10px 40px -10px rgba(255,255,255,0.15)" }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.boxShadow =
-              "0 0 0 1px rgb(var(--brand-rgb) / 0.5), 0 0 60px 4px rgb(var(--brand-rgb) / 0.35)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.boxShadow =
-              "0 10px 40px -10px rgba(255,255,255,0.15)";
-          }}
+          className="btn-try mt-12 md:mt-16 rounded-3xl text-xl md:text-2xl px-9 md:px-12 py-3.5 md:py-4"
         >
-          Try ChqIn
-          <ArrowRight size={18} strokeWidth={2.5} className="transition-transform duration-500 group-hover:translate-x-1" />
+          Try Chq<span className="text-brand-gradient">In</span>
         </motion.button>
       </div>
     </section>
