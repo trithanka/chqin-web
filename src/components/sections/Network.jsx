@@ -108,21 +108,6 @@ export default function Network() {
             <span>Smarter.</span>
           </motion.h2>
 
-          <div className="mt-4 md:mt-6 flex items-center justify-center md:justify-start gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse" />
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={currentVariant.lang}
-                initial={{ opacity: 0, x: -6 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -6 }}
-                transition={{ duration: 0.25 }}
-                className="font-mono-chq text-[11px] tracking-[0.28em] uppercase text-white/40"
-              >
-                {currentVariant.lang} script
-              </motion.span>
-            </AnimatePresence>
-          </div>
         </div>
 
         {/* RIGHT — 55% living network */}
