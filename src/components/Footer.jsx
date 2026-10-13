@@ -60,7 +60,7 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="font-mono-chq text-[10px] tracking-[0.24em] uppercase text-black/45 leading-relaxed">
-          <p>© 2026 ChqIn Technologies Pvt. Ltd.</p>
+          <p>© 2026 ChqIn Pvt. Ltd.</p>
           <p className="mt-1">Built in India.</p>
         </div>
       </div>

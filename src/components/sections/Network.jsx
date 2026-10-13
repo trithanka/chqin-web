@@ -81,7 +81,7 @@ export default function Network() {
             transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
             className="font-display font-extrabold text-white leading-[0.92] md:leading-[0.88] tracking-[0.015em] text-[clamp(1.75rem,7vw,132px)] text-center md:text-left"
           >
-            Every new Check-in
+            Every arrival
           </motion.h2>
           <motion.h2
             initial={{ opacity: 0, y: 60 }}
@@ -90,7 +90,7 @@ export default function Network() {
             transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.18 }}
             className="mt-1 font-display font-extrabold text-white leading-[0.92] md:leading-[0.88] tracking-[0.015em] text-[clamp(1.75rem,7vw,132px)] flex flex-wrap items-baseline justify-center md:justify-start gap-x-[0.22em] text-center md:text-left"
           >
-            <span>Makes</span>
+            <span>brings</span>
             <span className="relative inline-block overflow-hidden align-baseline min-w-[2.2ch] px-1.5 py-1 -my-1">
               <AnimatePresence mode="wait">
                 <motion.span
@@ -105,7 +105,7 @@ export default function Network() {
                 </motion.span>
               </AnimatePresence>
             </span>
-            <span>Smarter.</span>
+            <span>closer.</span>
           </motion.h2>
 
         </div>

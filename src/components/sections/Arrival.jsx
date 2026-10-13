@@ -43,11 +43,11 @@ export default function Arrival() {
         }}
       />
 
-      <div className="relative mx-auto max-w-[1600px] w-full min-h-screen md:h-screen px-6 md:px-16 grid grid-cols-1 md:grid-cols-12 items-center gap-8 py-16 md:py-0">
+      <div className="relative mx-auto max-w-[1600px] w-full min-h-screen md:h-screen px-6 md:px-16 grid grid-cols-1 md:grid-cols-12 items-center gap-8 py-16 md:py-0 md:pb-[4vh]">
         {/* LEFT — poster command */}
         <div className="md:col-span-6 relative z-10 flex flex-col items-center md:items-start text-center md:text-left">
           {/* Huge poster command */}
-          <div>
+          <div className="md:pl-[4vw]">
             <div className="overflow-hidden">
               <motion.h1
                 variants={line}
@@ -61,17 +61,10 @@ export default function Arrival() {
               </motion.h1>
             </div>
           </div>
-
-          {/* Sub heading */}
-          <div className={`mt-3 md:mt-4 text-center md:text-left reveal-fade ${revealed ? "in" : ""}`}>
-            <p className="font-display font-medium text-white/60 text-[clamp(1.1rem,2.2vw,32px)] tracking-tight">
-              Check in seconds.
-            </p>
-          </div>
         </div>
 
         {/* RIGHT — hero QR */}
-        <div className="md:col-span-6 relative z-10 flex justify-center md:justify-end">
+        <div className="md:col-span-6 relative z-10 flex justify-center md:justify-end md:pr-[4vw]">
           <div
             className={`relative reveal ${revealed ? "in" : ""}`}
             style={{ transitionDuration: "1.6s" }}

@@ -322,6 +322,9 @@ export default function Experience() {
             >
               Never Again
             </motion.h2>
+            <p className="mt-4 font-mono-chq text-[11px] md:text-xs tracking-[0.28em] uppercase text-white/50">
+              A Reusable Arrival Mechanism
+            </p>
           </div>
         </div>
       </div>
