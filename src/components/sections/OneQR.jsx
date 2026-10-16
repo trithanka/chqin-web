@@ -20,7 +20,6 @@ const CYCLE_MS = 3600;
 
 export default function OneQR() {
   const [idx, setIdx] = useState(0);
-  const [pingKey, setPingKey] = useState(0);
 
   useEffect(() => {
     // Preload all environment images for zero latency, flicker-free background slides
@@ -33,7 +32,6 @@ export default function OneQR() {
   useEffect(() => {
     const id = setInterval(() => {
       setIdx((i) => (i + 1) % ENVIRONMENTS.length);
-      setPingKey((k) => k + 1);
     }, CYCLE_MS);
     return () => clearInterval(id);
   }, []);
@@ -118,22 +116,6 @@ export default function OneQR() {
           >
             <QRGlyph color="#000000" value="https://business.chqin.in/" className="w-full h-full" />
           </motion.a>
-
-          {/* Tiny "You're in" ping — pulses briefly on each env change */}
-          <AnimatePresence>
-            <motion.div
-              key={pingKey}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: [0, 1, 1, 0], y: [6, 0, 0, -4] }}
-              transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], times: [0, 0.15, 0.75, 1] }}
-              className="absolute -bottom-8 left-1/2 -translate-x-1/2 md:bottom-auto md:top-1/2 md:-right-8 md:translate-x-full md:-translate-y-1/2 flex items-center gap-2 whitespace-nowrap"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-brand" />
-              <span className="font-mono-chq text-[10px] tracking-[0.28em] uppercase text-brand">
-                You&apos;re in
-              </span>
-            </motion.div>
-          </AnimatePresence>
         </motion.div>
 
         {/* Softly-fading contextual word */}

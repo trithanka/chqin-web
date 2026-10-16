@@ -13,10 +13,10 @@ const PILOT_URL = "https://business.chqin.in/";
 
 const CATEGORIES = [
   { name: "Hotels & Resorts", icon: BedDouble, img: "/mosaic/env-01.webp", live: true },
+  { name: "Offices & Business Parks", icon: Building, img: "/mosaic/cat-office.webp", live: true },
   { name: "Guest Houses & Homestays", icon: Home, img: "/mosaic/cat-guesthouse.webp" },
   { name: "Hostels, PGs & Coliving", icon: BedSingle, img: "/mosaic/cat-hostel.webp" },
   { name: "Apartments & Residential", icon: Building2, img: "/mosaic/env-02.webp" },
-  { name: "Offices & Business Parks", icon: Building, img: "/mosaic/cat-office.webp" },
   { name: "Shopping Malls", icon: ShoppingBag, img: "/mosaic/env-06.webp" },
   { name: "Restaurants & Cafés", icon: UtensilsCrossed, img: "/mosaic/cat-restaurant.webp" },
   { name: "Events & Exhibitions", icon: Ticket, img: "/mosaic/env-10.webp" },
@@ -152,7 +152,7 @@ export default function TryModal({ open, onOpenChange }) {
                     </div>
                     <footer className="flex shrink-0 items-center gap-3 border-t border-white/10 px-4 py-3 text-xs text-white/60 sm:px-8 sm:text-sm">
                       <Info size={18} className="shrink-0" aria-hidden="true" />
-                      Hotel pilots are currently open. Other categories are in development and will be available soon.
+                      Hotel and office pilots are currently open. Other categories are in development and will be available soon.
                     </footer>
                   </motion.div>
                 </DialogPrimitive.Content>
