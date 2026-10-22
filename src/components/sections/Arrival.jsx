@@ -4,19 +4,6 @@ import QRGlyph from "@/components/QRGlyph";
 
 const MIDDLE = ["", "PAY", "PURPOSE", "VERIFY", "VALIDATE"];
 
-// Thin gradient arrow: line fades in from the left into a rounded chevron
-const Arrow = () => (
-  <svg viewBox="0 0 40 12" className="inline-block w-[1.5em] h-[0.6em] mx-[0.35em] align-middle -translate-y-[0.05em]" fill="none" aria-hidden="true">
-    <defs>
-      <linearGradient id="arrow-grad" x1="0" x2="1" y1="0" y2="0">
-        <stop offset="0" stopColor="#7ee8fa" stopOpacity="0" />
-        <stop offset="0.6" stopColor="#5cc8f5" />
-        <stop offset="1" stopColor="#3b7ff0" />
-      </linearGradient>
-    </defs>
-    <path d="M2 6h34M31 1.5 36 6l-5 4.5" stroke="url(#arrow-grad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
 
 const line = {
   hidden: { y: "110%" },
@@ -83,7 +70,7 @@ export default function Arrival() {
               </motion.h1>
             </div>
             {/* Cycling tagline — fixed height so the headline and QR never move */}
-            <div className="relative h-[1.2em] [clip-path:inset(0_-100vw)] font-display font-extrabold text-[clamp(0.9rem,2.4vw,32px)] tracking-[-0.02em] whitespace-nowrap mt-3">
+            <div className="relative h-[1.6em] [clip-path:inset(0_-100vw)] font-mono-chq text-[clamp(11px,1vw,14px)] tracking-[0.32em] uppercase whitespace-nowrap mt-6 md:mt-8">
               <AnimatePresence initial={false}>
                 <motion.p
                   key={word}
@@ -91,17 +78,16 @@ export default function Arrival() {
                   animate={{ y: "0%", opacity: 1 }}
                   exit={{ y: "-100%", opacity: 0 }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute inset-0 text-center md:text-left"
+                  className="absolute inset-0 text-center md:text-left text-white/45"
                 >
-                  <span className="text-white">SCAN</span>
-                  <Arrow />
+                  SCAN<span className="text-white/25 mx-[0.6em]">›</span>
                   {MIDDLE[word] && (
                     <>
-                      <span className="text-white">{MIDDLE[word]}</span>
-                      <Arrow />
+                      <span className="text-brand">{MIDDLE[word]}</span>
+                      <span className="text-white/25 mx-[0.6em]">›</span>
                     </>
                   )}
-                  <span className="text-brand-gradient">IN</span>
+                  IN
                 </motion.p>
               </AnimatePresence>
             </div>
