@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import QRGlyph from "@/components/QRGlyph";
-
-const MIDDLE = ["", "PAY", "PURPOSE", "VERIFY", "VALIDATE"];
-
 
 const line = {
   hidden: { y: "110%" },
@@ -17,12 +14,6 @@ export default function Arrival() {
   const [revealed, setRevealed] = useState(false);
   const [hover, setHover] = useState(false);
   const [ack, setAck] = useState(false);
-  const [word, setWord] = useState(0);
-
-  useEffect(() => {
-    const t = setInterval(() => setWord((w) => (w + 1) % MIDDLE.length), 2200);
-    return () => clearInterval(t);
-  }, []);
 
   useEffect(() => {
     const t = setTimeout(() => setRevealed(true), 1800);
@@ -68,28 +59,6 @@ export default function Arrival() {
                 <span className="text-white">SCAN </span>
                 <span className="text-brand-gradient">IN</span>
               </motion.h1>
-            </div>
-            {/* Cycling tagline — fixed height so the headline and QR never move */}
-            <div className="relative h-[1.6em] [clip-path:inset(0_-100vw)] font-mono-chq text-[clamp(11px,1vw,14px)] tracking-[0.32em] uppercase whitespace-nowrap mt-6 md:mt-8">
-              <AnimatePresence initial={false}>
-                <motion.p
-                  key={word}
-                  initial={{ y: "100%", opacity: 0 }}
-                  animate={{ y: "0%", opacity: 1 }}
-                  exit={{ y: "-100%", opacity: 0 }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute inset-0 text-center md:text-left text-white/45"
-                >
-                  SCAN<span className="text-white/25 mx-[0.6em]">›</span>
-                  {MIDDLE[word] && (
-                    <>
-                      <span className="text-brand">{MIDDLE[word]}</span>
-                      <span className="text-white/25 mx-[0.6em]">›</span>
-                    </>
-                  )}
-                  IN
-                </motion.p>
-              </AnimatePresence>
             </div>
           </div>
         </div>
